@@ -1,14 +1,20 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-declare var $: any; // Declare jQuery so TypeScript recognizes $
+import { Component } from '@angular/core';
+import { LoginService } from './Services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'my-jobs-app';
+  constructor(public loginService: LoginService, private router: Router) 
+    {
+    }
+  title = 'Jobs Portal';
+  logout(){
+    this.loginService.Logout();
+    this.router.navigate(['/login']);
+  }
  
 }
