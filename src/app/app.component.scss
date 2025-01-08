@@ -1,0 +1,37 @@
+/* Customize the color and styling of the navbar to make it look more professional and sleek */
+.navbar-custom {
+    background-color: #005662; /* A deep teal/blue shade */
+    border-bottom: 2px solid #004851; /* slightly darker shade for a subtle depth */
+  }
+  
+  .navbar-brand {
+    color: #ffffff !important; /* ensuring the logo or name is clear */
+    font-size: 1.5rem; /* adjust size as needed */
+    font-weight: bold; /* Added boldness for better visibility */
+  }
+  
+  .nav-link {
+    color: #d1e8e2 !important; /* a soft, complementary color of the background for links */
+    transition: color 0.3s ease-in-out; /* smooth transition for hover effects */
+  }
+  
+  .nav-link:hover, .nav-link:focus {
+    color: #ffffff !important; /* change to pure white on hover/focus for better emphasis */
+    text-decoration: none; /* remove underline effect */
+  }
+  
+  .navbar-toggler {
+    border-color: #d1e8e2; /* border color of the toggler to match the link colors */
+  }
+  
+  /* Button styling for a more integrated look */
+  .btn-warning {
+    background-color: #ffcc00; /* A vibrant yellow color to stand out */
+    border-color: #e6b800; /* A darker yellow for border contrast */
+    color: #005662; /* Text color */
+  }
+  
+  .btn-warning:hover {
+    background-color: #e6b800;
+    color: #ffffff;
+  }

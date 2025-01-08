@@ -41,21 +41,15 @@ export class LoginService {
     }
   }
 
-  public Register(signUpViewModel: SignUpViewModel): Observable<any> {
+  public Register(signUpViewModel: any): Observable<any> {
     this.httpClient = new HttpClient(this.httpBackend);
-    return this.httpClient.post<any>("http://localhost:9090/register", signUpViewModel, { responseType: "json", observe: "response" })
-      .pipe(map(response => {
-        if (response) {
-          this.currentUserName = response.body.userName;
-          sessionStorage['currentUser'] = JSON.stringify(response.body);
-        }
-        return response.body;
-      }));
+    return this.httpClient.post<any>("https://localhost:7288/api/Users", signUpViewModel, { responseType: "json", observe: "response" });
+    
   }
 
   getUserByEmail(Email: string): Observable<any> {
     this.httpClient = new HttpClient(this.httpBackend);
-    return this.httpClient.get<any>("http://localhost:9090/api/getUserByEmail/" + Email, { responseType: "json" });
+    return this.httpClient.get<any>("https://localhost:7288/api/getUserByEmail/" + Email, { responseType: "json" });
   }
 
   public Logout() {
@@ -75,6 +69,6 @@ export class LoginService {
 
   public getAllEmployes(): Observable<any> {
     this.httpClient = new HttpClient(this.httpBackend);
-    return this.httpClient.get<any>("http://localhost:9090/api/getallemployees", { responseType: "json" });
+    return this.httpClient.get<any>("https://localhost:7288/api/getallemployees", { responseType: "json" });
   }
 }

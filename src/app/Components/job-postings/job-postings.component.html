@@ -1,1 +1,55 @@
-<p>job-postings works!</p>
+<div class="container mt-4">
+    <!-- Action Buttons and Static Fields Row -->
+    <div class="row">
+      <div class="col-md-3 mb-3">
+        <!-- Static textbox example -->
+        <input class="form-control" type="text" placeholder="Static Text Box" aria-label="Static Text Box">
+      </div>
+      <div class="col-md-3 mb-3">
+        <!-- Another static textbox if needed -->
+        <input class="form-control" type="text" placeholder="Another Static Box" aria-label="Another Static Box">
+      </div>
+      <div class="col-md-auto mb-3">
+        <!-- Static button example -->
+        <button class="btn btn-primary" type="button">Action Button 1</button>
+      </div>
+      <div class="col-md-auto mb-3">
+        <!-- Another static button if needed -->
+        <button class="btn btn-secondary" type="button">Action Button 2</button>
+      </div>
+    </div>
+  
+    <!-- Jobs Grid Row -->
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Job Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Qualification</th>
+              <th scope="col">Salary</th>
+              <th scope="col">Location</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let job of jobs">
+              <td>{{ job.jobName }}</td>
+              <td>{{ job.description }}</td>
+              <td>{{ job.qualification }}</td>
+              <td>{{ job.salary }}</td>
+              <td>{{ job.location }}</td>
+              <td>
+                <a class="btn btn-primary btn-sm" [routerLink]="['/profiles', job.id]">Matched Profiles</a>
+                <button class="btn btn-info btn-sm" (click)="editJob(job.id)">Edit</button>
+                <button class="btn btn-danger btn-sm" (click)="deleteJob(job.id)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+  
+        <pagination-controls (pageChange)="pageNumber = $event"></pagination-controls>
+      </div>
+    </div>
+  </div>

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { SignUpViewModel } from '../../Models/sign-up-view-model';
+import { LoginService } from '../../Services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -7,5 +10,34 @@ import { Component } from '@angular/core';
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
+   constructor(public loginService: LoginService, private router: Router) 
+    {    
+    }
+  public signUpViewModel : SignUpViewModel =new  SignUpViewModel();
+  selectedRole: string | undefined;
 
+  onRoleChange(role: string): void {
+    this.selectedRole = role;
+  }
+
+  onSubmit(form: any) {
+    const signupobj=form.value;
+    signupobj.RoleId=signupobj.role=='Employer'?2:3;
+    signupobj.role=null;
+    console.log('Submitted!', signupobj);
+    this.loginService.Register(signupobj).subscribe({
+next:(response)=>{
+  debugger;
+  if(response.body.id!=null){
+    this.router.navigate(["/login"]);
+  }
+},
+error: (error)=>{
+console.log(error);
+
+},
+complete: ()=>{}
+
+    });
+  }
 }

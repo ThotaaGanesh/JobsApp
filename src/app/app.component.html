@@ -1,48 +1,52 @@
-<nav class="navbar navbar-expand-sm bg-success navbar-dark">
-    <a class="navbar-brand" href="#">
-      Angular Task Manager
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mynav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="mynav">
-      <ul class="navbar-nav mr-auto">
-        <ng-container *ngIf="loginService.currentUserName != null && (loginService.currentUserRole == 'Employer'|| loginService.currentUserRole == 'Admin' )">
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]=" [ '/posting' ] ">Job Postings</a>
-          </li>
-        </ng-container>
-  
-        <ng-container *ngIf="loginService.currentUserName != null && (loginService.currentUserRole == 'Employee'|| loginService.currentUserRole == 'Admin' )">
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]=" [ '/job' ] ">Jobs</a>
-          </li>
-        </ng-container>
-  
-        <ng-container *ngIf="loginService.currentUserName == null">
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]=" [ '/login' ] ">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]=" [ '/signup' ] ">Sign Up</a>
-          </li>
-        </ng-container>
-  
+<nav class="navbar navbar-expand-sm navbar-custom">
+  <a class="navbar-brand" href="#">
+    Angular Task Manager
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mynav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="mynav">
+    <ul class="navbar-nav mr-auto">
+      <ng-container
+        *ngIf="loginService.currentUserName != null && (loginService.currentUserRole == 'Employer'|| loginService.currentUserRole == 'Admin' )">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]=" [ '/about' ] ">About</a>
+          <a class="nav-link" [routerLink]=" [ '/posting' ] ">Jobs</a>
         </li>
-      </ul>
-  
-      <!-- Replace the search form with a logout link -->
-      <div class="ml-auto d-flex justify-content-end">
-        <ng-container *ngIf="loginService.currentUserName != null">
-          <button class="btn btn-warning" (click)="logout()">Logout</button>
-        </ng-container>
-      </div>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]=" [ '/newposting' ] ">Create New Job</a>
+        </li>
+      </ng-container>
+
+      <ng-container
+        *ngIf="loginService.currentUserName != null && (loginService.currentUserRole == 'Employee'|| loginService.currentUserRole == 'Admin' )">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]=" [ '/job' ] ">Opportunities</a>
+        </li>
+      </ng-container>
+
+      <ng-container *ngIf="loginService.currentUserName == null">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]=" [ '/login' ] ">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]=" [ '/signup' ] ">Sign Up</a>
+        </li>
+      </ng-container>
+
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]=" [ '/about' ] ">About</a>
+      </li>
+    </ul>
+
+    <div class="ml-auto d-flex justify-content-end">
+      <ng-container *ngIf="loginService.currentUserName != null">
+        <button class="btn btn-warning" (click)="logout()">Logout</button>
+      </ng-container>
     </div>
-  </nav>
-  
-  <div class="container-fluid">
-    <router-outlet #outlet="outlet"></router-outlet>
   </div>
+</nav>
+
+<div class="container-fluid">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>

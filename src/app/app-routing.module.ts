@@ -7,14 +7,16 @@ import { AboutComponent } from './Components/about/about.component';
 import { SignupComponent } from './Components/signup/signup.component';
 import { JobPostingsComponent } from './Components/job-postings/job-postings.component';
 import { JobsComponent } from './Components/jobs/jobs.component';
+import { NewPostingComponent } from './Components/new-posting/new-posting.component';
 
 const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: "full" },
     { path: "login", component:LoginComponent, pathMatch: "full" },
-    { path: "about", component: AboutComponent, data: { linkIndex: 2 } },
-    { path: "signup", component: SignupComponent, data: { linkIndex: 1 } },
-    { path: "posting", component: JobPostingsComponent,canActivate:[CanActivateGuardService], data: { linkIndex: 3 } },
-    { path: "job", component: JobsComponent, canActivate:[CanActivateGuardService],data: { linkIndex: 4 } }  
+    { path: "about", component: AboutComponent },
+    { path: "signup", component: SignupComponent },
+    { path: "posting", component: JobPostingsComponent,canActivate:[CanActivateGuardService] },
+    { path: "newposting", component: NewPostingComponent,canActivate:[CanActivateGuardService] },
+    { path: "job", component: JobsComponent, canActivate:[CanActivateGuardService] }  
   ];
   
   @NgModule({

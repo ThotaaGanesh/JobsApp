@@ -16,6 +16,7 @@ import { JobsComponent } from './Components/jobs/jobs.component';
 import { SignupComponent } from './Components/signup/signup.component';
 import { AlertDirective } from './directives/alert.directive';
 import { FormsModule } from '@angular/forms';
+import { NewPostingComponent } from './Components/new-posting/new-posting.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     JobPostingsComponent,
     JobsComponent,
     SignupComponent,
-    AlertDirective
+    AlertDirective,
+    NewPostingComponent
   ],
   imports: [
     FormsModule,

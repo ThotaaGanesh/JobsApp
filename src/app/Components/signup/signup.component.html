@@ -1,1 +1,91 @@
-<p>signup works!</p>
+<form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
+    <div class="row">
+      <div class="col-lg-6 col-xl-5 col-md-9 mx-auto">
+        <div class="card mt-4">
+          <div class="card-header bg-secondary text-white">
+            <h3>Sign Up</h3>
+          </div>
+  
+          <div class="card-body">
+            <!-- User Name Field -->
+            <div class="form-group form-row">
+              <label for="userName" class="col-md-4 col-form-label">User Name</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="userName" placeholder="User Name" name="Name" ngModel required>
+              </div>
+            </div>
+  
+            <!-- Phone Number Field -->
+            <div class="form-group form-row">
+              <label for="phoneNumber" class="col-md-4 col-form-label">Phone Number</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" name="PhoneNumber" ngModel required>
+              </div>
+            </div>
+  
+            <!-- Email ID Field -->
+            <div class="form-group form-row">
+              <label for="email" class="col-md-4 col-form-label">Email ID</label>
+              <div class="col-md-8">
+                <input type="email" class="form-control" id="email" placeholder="Email ID" name="EmailId" ngModel required email>
+              </div>
+            </div>
+  
+            <!-- Password Field -->
+            <div class="form-group form-row">
+              <label for="password" class="col-md-4 col-form-label">Password</label>
+              <div class="col-md-8">
+                <input type="password" class="form-control" id="password" placeholder="Password" name="Password" ngModel required>
+              </div>
+            </div>
+  
+            <!-- Confirm Password Field -->
+            <div class="form-group form-row">
+              <label for="confirmPassword" class="col-md-4 col-form-label">Confirm Password</label>
+              <div class="col-md-8">
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" name="confirmPassword" ngModel required>
+              </div>
+            </div>
+  
+            <!-- Role Selection -->
+            <div class="form-group form-row">
+              <label for="role" class="col-md-4 col-form-label">Role</label>
+              <div class="col-md-8">
+                <select class="form-control" id="role" name="role" ngModel required (change)="onRoleChange($event.target.value)">
+                  <option value="">Select Role</option>
+                  <option value="Employer">Employer</option>
+                  <option value="Job Seeker">Job Seeker</option>
+                </select>
+              </div>
+            </div>
+  
+            <!-- Conditional Fields -->
+            <div *ngIf="selectedRole === 'Employer'" class="form-group form-row">
+              <label for="organisationName" class="col-md-4 col-form-label">Organisation Name</label>
+              <div class="col-md-8">
+                <input type="text" class="form-control" id="organisationName" placeholder="Organisation Name" name="OrganisationName" ngModel>
+              </div>
+            </div>
+  
+            <div *ngIf="selectedRole === 'Job Seeker'" class="form-group form-row">
+              <label for="qualification" class="col-md-4 col-form-label">Qualification</label>
+              <div class="col-md-8">
+                <select class="form-control" id="qualification" name="Qualification" ngModel>
+                  <option value="">Select Qualification</option>
+                  <option value="No Education">No Education</option>
+                  <option value="Tenth">Tenth</option>
+                  <option value="Inter">Inter</option>
+                  <option value="Degree">Degree</option>
+                  <option value="Btech">Btech</option>
+                </select>
+              </div>
+            </div>
+          </div>
+  
+          <div class="card-footer text-right">
+            <button type="submit" class="btn btn-primary" [disabled]="!signupForm.form.valid">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
