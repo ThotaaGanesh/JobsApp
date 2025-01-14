@@ -1,0 +1,10 @@
+.styled-checkbox {
+    width: 20px; /* Desired checkbox width */
+    height: 20px; /* Desired checkbox height */
+    border: 2px solid #000409; /* Desired border color and thickness */
+    cursor: pointer;
+}
+
+.styled-checkbox:checked {
+    background-color: #0a7ee3; /* Background color when checked */
+}

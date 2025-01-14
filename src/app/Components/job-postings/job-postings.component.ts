@@ -19,12 +19,14 @@ export class JobPostingsComponent {
   }
 
   loadJobs() {
-    this.jobService.GetAllJobs().subscribe(data => {
+    this.jobService.GetJobsByOrganisation(this.GetOrgnaisationId()).subscribe(data => {
       debugger;
       this.jobs = data.body; // Adjust based on the actual API response structure
     });
   }
-
+  private GetOrgnaisationId(): number {
+    return JSON.parse(sessionStorage["currentUser"]).userId;
+  }
   // searchJobs() {
   //   if (this.searchTerm) {
   //     this.jobService.searchJobs(this.searchTerm).subscribe(data => {

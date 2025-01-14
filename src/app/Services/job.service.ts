@@ -23,4 +23,9 @@ export class JobService {
 
   }
 
+  public GetJobsByOrganisation(orgid: number): Observable<any> {
+
+    return this.httpClient.get<any>("https://localhost:7288/api/jobs/organisation/" + orgid, { responseType: "json", observe: "response" });
+
+  }
 }

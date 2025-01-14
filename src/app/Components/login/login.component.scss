@@ -1,0 +1,11 @@
+.card-footer {
+    display: flex;
+    justify-content: space-between; /* Ensures spacing between buttons */
+    align-items: center;
+}
+
+.card-footer .btn {
+    flex-grow: 0; /* Ensures buttons only take as much space as needed */
+    width: auto; /* Let the button size be determined by its content */
+    margin: 0 5px; /* Adds 5px margin on both sides of each button for spacing */
+}

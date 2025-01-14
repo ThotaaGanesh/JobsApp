@@ -13,7 +13,7 @@ export class SignupComponent {
    constructor(public loginService: LoginService, private router: Router) 
     {    
     }
-  public signUpViewModel : SignUpViewModel =new  SignUpViewModel();
+  //public signUpViewModel : SignUpViewModel =new  SignUpViewModel();
   selectedRole: string | undefined;
 
   onRoleChange(role: string): void {

@@ -17,6 +17,7 @@ export class LoginService {
 
   currentUserName: any = null;
   currentUserRole: any = null;
+  organisationName: any = null;
 
   public Login(loginViewModel: LoginViewModel): Observable<any> {
     debugger;
@@ -27,6 +28,7 @@ export class LoginService {
           debugger;
           this.currentUserName = response.body.data.username;
           this.currentUserRole = response.body.data.role;
+          this.organisationName = this.currentUserRole == "Employer" ? response.body.data.organisationName : null;
           sessionStorage['currentUser'] = JSON.stringify(response.body.data);
         }
         return response.body.data;
@@ -38,13 +40,14 @@ export class LoginService {
       var currentUser = JSON.parse(sessionStorage['currentUser']);
       this.currentUserName = currentUser.userName;
       this.currentUserRole = currentUser.userRole;
+      this.organisationName = currentUser.userRole == "Employer" ? currentUser.organisationName : null;
     }
   }
 
   public Register(signUpViewModel: any): Observable<any> {
     this.httpClient = new HttpClient(this.httpBackend);
     return this.httpClient.post<any>("https://localhost:7288/api/Users", signUpViewModel, { responseType: "json", observe: "response" });
-    
+
   }
 
   getUserByEmail(Email: string): Observable<any> {
@@ -58,7 +61,7 @@ export class LoginService {
   }
 
   public isAuthenticated(): boolean {
-    var token : any= sessionStorage.getItem("currentUser") ? JSON.parse(sessionStorage["currentUser"]).token : null;
+    var token: any = sessionStorage.getItem("currentUser") ? JSON.parse(sessionStorage["currentUser"]).token : null;
     if (this.jwtHelperService.isTokenExpired()) {
       return false; //token is not valid
     }

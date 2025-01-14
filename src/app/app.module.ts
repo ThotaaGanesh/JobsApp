@@ -17,6 +17,8 @@ import { SignupComponent } from './Components/signup/signup.component';
 import { AlertDirective } from './directives/alert.directive';
 import { FormsModule } from '@angular/forms';
 import { NewPostingComponent } from './Components/new-posting/new-posting.component';
+import { DatePipe } from '@angular/common';
+import { SubscribeComponent } from './Components/subscribe/subscribe.component';
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { NewPostingComponent } from './Components/new-posting/new-posting.compon
     JobsComponent,
     SignupComponent,
     AlertDirective,
-    NewPostingComponent
+    NewPostingComponent,
+    SubscribeComponent
   ],
   imports: [
     FormsModule,
@@ -36,6 +39,7 @@ import { NewPostingComponent } from './Components/new-posting/new-posting.compon
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    
     JwtModule.forRoot( {
       config: {
         tokenGetter: () => {
@@ -45,6 +49,7 @@ import { NewPostingComponent } from './Components/new-posting/new-posting.compon
     })
   ],
   providers: [
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptorService,

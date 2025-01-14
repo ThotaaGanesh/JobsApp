@@ -1,0 +1,87 @@
+<form #alertForm="ngForm" (ngSubmit)="onSubmit(alertForm)">
+    <div class="row">
+        <div class="col-lg-6 col-xl-5 col-md-9 mx-auto">
+            <div class="card mt-4">
+                <div class="card-header bg-secondary text-white">
+                    <h3>Create Alert</h3>
+                </div>
+
+                <div class="card-body">
+                    <!-- User Name Field -->
+                    <div class="form-group form-row">
+                        <label for="userName" class="col-md-4 col-form-label">User Name</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="name" placeholder="User Name" name="name"
+                                ngModel required>
+                        </div>
+                    </div>
+
+                    <!-- Qualification Field -->
+                    <div class="form-group form-row">
+                        <label for="qualification" class="col-md-4 col-form-label">Qualification</label>
+                        <div class="col-md-8">
+                            <select class="form-control" id="qualification" name="qualification" ngModel>
+                                <option value="">Select Qualification</option>
+                                <option value="No Education">No Education</option>
+                                <option value="Tenth">Tenth</option>
+                                <option value="Inter">Inter</option>
+                                <option value="Degree">Degree</option>
+                                <option value="Btech">Btech</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Notification Type Field -->
+                    <div class="form-group form-row">
+                        <label for="SubscriptionType" class="col-md-4 col-form-label">Notification Type</label>
+                        <div class="col-md-8">
+                            <select class="form-control" id="subscriptionType" name="subscriptionType" ngModel
+                                (change)="onChange($event.target.value)">
+                                <option value="">Select Notification</option>
+                                <option value="whatsup">Whats up<i class="fab fa-whatsapp ms-2"
+                                        style="color: #25D366;"></i></option>
+                                <option value="textmessage">Text Message<i class="fas fa-comment-alt"
+                                        style="color: #555;"></i></option>
+                                <option value="email">Email<i class="fas fa-envelope ms-2" style="color: #333;"></i>
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Phone Number Field -->
+                    <div class="form-group form-row" *ngIf="selectedNotification != null">
+                        <label *ngIf="selectedNotification === 'email'" for="sendTo"
+                            class="col-md-4 col-form-label">Enter Email</label>
+                        <label *ngIf="selectedNotification != 'email'" for="sendTo"
+                            class="col-md-4 col-form-label">Phone Number</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="sendTo" [placeholder]="placeholderText"
+                                name="sendTo" ngModel required>
+                        </div>
+                    </div>
+
+                    <!-- Active Field -->
+                    <div class="form-group form-row">
+                        <label class="col-md-4 col-form-label" for="isActive">
+                            Activate Now?
+                        </label>
+                        <div class="col-md-8">
+                            <div class="form-check">
+                                <input class="form-check-input styled-checkbox" type="checkbox" id="isActive"
+                                    name="isActive" ngModel>
+                                <label class="form-check-label" for="isActive"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- Closing tag for card-body -->
+
+                <div class="card-footer text-right">
+                    <button type="submit" class="btn btn-primary" [disabled]="!alertForm.form.valid">Create
+                        Alert</button>
+                </div>
+            </div> <!-- Closing tag for card -->
+        </div> <!-- Closing tag for col -->
+    </div> <!-- Closing tag for row -->
+</form>
