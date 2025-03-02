@@ -1,0 +1,119 @@
+
+.video-iframe {
+  border: 5px solid #ddd;
+    padding: 10px;
+    border-radius: 10px; /* Default moderate rounding */
+    transition: border-radius 0.3s ease-in-out; /* Smoothing the transition */
+}
+
+/*-----------------------------------*/
+
+
+  /* Add additional CSS as necessary */
+  /* General Styles */
+  .banner-image {
+    height: 300px;  /* Adjust height as desired */
+    background-image: url('/images/banner.png');
+    background-size: cover;
+    background-position: center;
+    margin-top: 20px;  /* Adjust the value as needed */
+    background-size: 100% 100%; /* Stretches the image to fit without cropping */
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  /* Video Carousel Styles */
+  .video-iframe {
+    width: 100%; /* Responsive width */
+    height: 250px; /* Fixed height for smaller thumbnail-like appearance */
+    border: none;
+  }
+  
+  /* Optional: Style carousel item for better alignment and padding */
+  .carousel-item {
+    text-align: center; /* Center the video */
+    padding: 15px; /* Add some padding around the video */
+  }
+
+  @media (max-width: 768px) {
+    .video-iframe {
+      height: 180px; /* smaller height for smaller screens */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .carousel .col-md-6 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+
+  .goals-wrapper {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: space-around; 
+    margin-top: 20px;
+}
+
+.goal-card {
+    flex: 0 1 30%; 
+    margin: 10px; 
+    padding: 20px; 
+    background-color: #f8f9fa; 
+    border-left: 5px solid #5C6BC0; 
+    box-shadow: 0 4px 8px rgba(0,0,0,.1); 
+    border-radius: 8px; 
+    position: relative; 
+    overflow: hidden; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.goal-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0,0,0,.2);
+}
+
+/* Embed Container and Carousel Styles */
+.container {
+  padding: 20px;
+  background-color: #f4f4f4; /* Light grey background for contrast */
+}
+
+.carousel-inner {
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.2); /* A subtle shadow */
+}
+
+/* Styling for YouTube iframe */
+.video-iframe {
+  width: 100%; /* Responsive width */
+  height: 300px; /* Fixed height, adjust as necessary */
+  border-radius: 12px; /* Rounded corners */
+  border: none; /* Remove default borders */
+  box-shadow: 3px 3px 10px rgba(0,0,0,0.15); /* Soft shadow for depth */
+  transition: transform 0.3s ease; /* Smooth transform on hover */
+}
+
+.video-iframe:hover {
+  transform: scale(1.03); /* Slightly increase size on hover for effect */
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  //background-color: #4CAF50; /* Style navigation arrows */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+}
+
+/* Ensure proper alignment and spacing */
+.row {
+  margin: 0;
+}
+
+.col-md-6 {
+  padding: 10px;
+}
