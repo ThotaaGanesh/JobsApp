@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { JobService } from '../../Services/job.service';
+import { NotificationService } from '../../Services/notification.service';
 
 @Component({
   selector: 'app-jobs',
@@ -8,11 +9,11 @@ import { JobService } from '../../Services/job.service';
   styleUrl: './jobs.component.scss'
 })
 export class JobsComponent {
- jobs: any[] = [];
+  jobs: any[] = [];
   searchTerm: string = '';
   pageNumber: number = 1;
 
-  constructor(private jobService: JobService) { }
+  constructor(private jobService: JobService, private notificationSrevice: NotificationService) { }
 
   ngOnInit() {
     this.loadJobs();
@@ -25,6 +26,46 @@ export class JobsComponent {
     });
   }
 
+  SendWhatsupMessage(job: any) {
+    var currentUser = sessionStorage.getItem("currentUser") ? JSON.parse(sessionStorage["currentUser"]) : null;
+    if (currentUser != null) {
+      this.notificationSrevice.SendNotification(currentUser.userId
+        , job.id, "whatsup").subscribe({
+        next: (response) => {
+          alert("Notification Sent Successfully");
+        },
+        error: (error) => {
+          console.log(error);
+        },
+        complete: () => { }
+
+      });
+    }
+
+  }
+
+  SendSms(job: any) {
+    alert("Sorry Not Implemented Yet! On The Way");
+  }
+
+  SendEmail(job: any) {
+    debugger;
+    var currentUser = sessionStorage.getItem("currentUser") ? JSON.parse(sessionStorage["currentUser"]) : null;
+    if (currentUser != null) {
+      this.notificationSrevice.SendNotification(currentUser.userId
+        , job.id, "mail").subscribe({
+        next: (response) => {
+          alert("Notification Sent Successfully");
+        },
+        error: (error) => {
+          console.log(error);
+
+        },
+        complete: () => { }
+
+      });
+    }
+  }
   // searchJobs() {
   //   if (this.searchTerm) {
   //     this.jobService.searchJobs(this.searchTerm).subscribe(data => {

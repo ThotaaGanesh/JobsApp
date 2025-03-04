@@ -47,28 +47,20 @@
                         <td>{{ job.contactPerson }}</td>
                         <td>{{ job.phoneNumber }}</td>
                         <td>
-                            <!-- <a class="btn btn-primary btn-sm me-2" [routerLink]="['/profiles', job.id]">Matched Profiles</a>
-                <button class="btn btn-info btn-sm me-2" (click)="editJob(job.id)">Edit</button>
-                <button class="btn btn-danger btn-sm" (click)="deleteJob(job.id)">Delete</button> -->
-
-                            <!-- <a href="whatsapp://send?text=Hello&phone=+1234567890" target="_blank"><i
-                                    class="fab fa-whatsapp me-2 fa-2x" style="color: green;"></i></a>
-                            <a href="mailto:user@example.com"><i class="fas fa-envelope fa-2x"></i></a> -->
-
                             <!-- WhatsApp Icon -->
-                            <a href="whatsapp://send?phone=YOUR_PHONE_NUMBER">
+                            <button (click)="SendWhatsupMessage(job)" style="background: none; border: none;">
                                 <i class="fab fa-whatsapp me-2 fa-2x" style="color: #25D366; font-size: 20px;"></i>
-                            </a>
+                            </button>
 
                             <!-- Message to Phone Icon -->
-                            <a href="sms:PHONE_NUMBER?body=MessageContent">
+                            <button (click)="SendSms(job)" style="background: none; border: none;">
                                 <i class="fas fa-comment-alt me-2 fa-2x" style="color: #555; font-size: 20px;"></i>
-                            </a>
+                            </button>
 
                             <!-- Mail Icon -->
-                            <a href="mailto:yourmail@example.com">
+                            <button (click)="SendEmail(job)" style="background: none; border: none;">
                                 <i class="fas fa-envelope fa-2x" style="color: #333; font-size: 20px;"></i>
-                            </a>
+                            </button>
 
                         </td>
                     </tr>
