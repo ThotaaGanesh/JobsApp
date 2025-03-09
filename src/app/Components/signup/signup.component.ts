@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
+  selectedNotification: string | null;
+  placeholderText: string | null;
    constructor(public loginService: LoginService, private router: Router) 
     {    
     }
@@ -19,8 +21,13 @@ export class SignupComponent {
   onRoleChange(role: string): void {
     this.selectedRole = role;
   }
-
+  onNotificationTypeChange(value: string): void {
+    debugger;
+    this.selectedNotification = value;
+    this.placeholderText = this.selectedNotification == "email" ? "Email" : "Phone Number";
+  }
   onSubmit(form: any) {
+    debugger;
     const signupobj=form.value;
     signupobj.RoleId=signupobj.role=='Employer'?2:3;
     signupobj.role=null;

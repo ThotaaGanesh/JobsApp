@@ -1,92 +1,148 @@
 <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
-    <div class="row">
-      <div class="col-lg-6 col-xl-5 col-md-9 mx-auto">
-        <div class="card mt-4">
-          <div class="card-header bg-secondary text-white">
-            <h3>Sign Up</h3>
-          </div>
-  
-          <div class="card-body">
-            <!-- User Name Field -->
-            <div class="form-group form-row">
-              <label for="userName" class="col-md-4 col-form-label">User Name</label>
-              <div class="col-md-8">
-                <input type="text" class="form-control" id="userName" placeholder="User Name" name="Name" ngModel required>
-              </div>
-            </div>
-  
-            <!-- Phone Number Field -->
-            <div class="form-group form-row">
-              <label for="phoneNumber" class="col-md-4 col-form-label">Phone Number</label>
-              <div class="col-md-8">
-                <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" name="PhoneNumber" ngModel required>
-              </div>
-            </div>
-  
-            <!-- Email ID Field -->
-            <div class="form-group form-row">
-              <label for="email" class="col-md-4 col-form-label">Email ID</label>
-              <div class="col-md-8">
-                <input type="email" class="form-control" id="email" placeholder="Email ID" name="EmailId" ngModel required email>
-              </div>
-            </div>
-  
-            <!-- Password Field -->
-            <div class="form-group form-row">
-              <label for="password" class="col-md-4 col-form-label">Password</label>
-              <div class="col-md-8">
-                <input type="password" class="form-control" id="password" placeholder="Password" name="Password" ngModel required>
-              </div>
-            </div>
-  
-            <!-- Confirm Password Field -->
-            <div class="form-group form-row">
-              <label for="confirmPassword" class="col-md-4 col-form-label">Confirm Password</label>
-              <div class="col-md-8">
-                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" name="confirmPassword" ngModel required>
-              </div>
-            </div>
-  
-            <!-- Role Selection -->
-            <div class="form-group form-row">
-              <label for="role" class="col-md-4 col-form-label">Role</label>
-              <div class="col-md-8">
-                <select class="form-control" id="role" name="role" ngModel required (change)="onRoleChange($event.target.value)">
-                  <option value="">Select Role</option>
-                  <option value="Employer">Admin</option>
-                  <option value="Employer">Employer</option>
-                  <option value="Job Seeker">Job Seeker</option>
-                </select>
-              </div>
-            </div>
-  
-            <!-- Conditional Fields -->
-            <div *ngIf="selectedRole === 'Employer'" class="form-group form-row">
-              <label for="organisationName" class="col-md-4 col-form-label">Organisation Name</label>
-              <div class="col-md-8">
-                <input type="text" class="form-control" id="organisationName" placeholder="Organisation Name" name="OrganisationName" ngModel>
-              </div>
-            </div>
-  
-            <div *ngIf="selectedRole === 'Job Seeker'" class="form-group form-row">
-              <label for="qualification" class="col-md-4 col-form-label">Qualification</label>
-              <div class="col-md-8">
-                <select class="form-control" id="qualification" name="Qualification" ngModel>
-                  <option value="">Select Qualification</option>
-                  <option value="No Education">No Education</option>
-                  <option value="Tenth">Tenth</option>
-                  <option value="Inter">Inter</option>
-                  <option value="Degree">Degree</option>
-                  <option value="Btech">Btech</option>
-                </select>
-              </div>
+  <div class="row">
+    <div class="col-lg-6 col-xl-5 col-md-9 mx-auto">
+      <div class="card mt-4">
+        <div class="card-header bg-secondary text-white">
+          <h3>Sign Up</h3>
+        </div>
+
+        <div class="card-body">
+          <!-- User Name Field -->
+          <div class="form-group form-row">
+            <label for="userName" class="col-md-4 col-form-label">User Name</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="userName" placeholder="User Name" name="Name" ngModel
+                required>
             </div>
           </div>
-  
-          <div class="card-footer text-right">
-            <button type="submit" class="btn btn-primary" [disabled]="!signupForm.form.valid">Sign Up</button>
+
+          <!-- Phone Number Field -->
+          <div class="form-group form-row">
+            <label for="phoneNumber" class="col-md-4 col-form-label">Phone Number</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" name="PhoneNumber"
+                ngModel required>
+            </div>
           </div>
+
+          <!-- Email ID Field -->
+          <div class="form-group form-row">
+            <label for="email" class="col-md-4 col-form-label">Email ID</label>
+            <div class="col-md-8">
+              <input type="email" class="form-control" id="email" placeholder="Email ID" name="EmailId" ngModel required
+                email>
+            </div>
+          </div>
+
+          <!-- Password Field -->
+          <div class="form-group form-row">
+            <label for="password" class="col-md-4 col-form-label">Password</label>
+            <div class="col-md-8">
+              <input type="password" class="form-control" id="password" placeholder="Password" name="Password" ngModel
+                required>
+            </div>
+          </div>
+
+          <!-- Confirm Password Field -->
+          <div class="form-group form-row">
+            <label for="confirmPassword" class="col-md-4 col-form-label">Confirm Password</label>
+            <div class="col-md-8">
+              <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password"
+                name="confirmPassword" ngModel required>
+            </div>
+          </div>
+
+          <!-- Role Selection -->
+          <div class="form-group form-row">
+            <label for="role" class="col-md-4 col-form-label">Role</label>
+            <div class="col-md-8">
+              <select class="form-control" id="role" name="role" ngModel required
+                (change)="onRoleChange($event.target.value)">
+                <option value="">Select Role</option>
+                <option value="Employer">Admin</option>
+                <option value="Employer">Employer</option>
+                <option value="Job Seeker">Job Seeker</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Conditional Fields -->
+          <div *ngIf="selectedRole === 'Employer'" class="form-group form-row">
+            <label for="organisationName" class="col-md-4 col-form-label">Organisation Name</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="organisationName" placeholder="Organisation Name"
+                name="OrganisationName" ngModel>
+            </div>
+          </div>
+
+          <div *ngIf="selectedRole === 'Job Seeker'" class="form-group form-row">
+            <label for="qualification" class="col-md-4 col-form-label">Qualification</label>
+            <div class="col-md-8">
+              <select class="form-control" id="qualification" name="Qualification" ngModel>
+                <option value="">Select Qualification</option>
+                <option value="Noeducation">No Education</option>
+                <option value="Tenth">Tenth</option>
+                <option value="Inter">Inter</option>
+                <option value="Degree">Degree</option>
+                <option value="Btech">Btech</option>
+                <option value="Nursing">Nursing</option>
+                <option value="Accountant">Accountant</option>
+                <option value="Inter">Inter</option>
+                <option value="ITI">ITI</option>
+                <option value="Polytechnique">Poly Technique</option>
+              </select>
+            </div>
+          </div>
+          <!-- Description -->
+          <div *ngIf="selectedRole === 'Job Seeker'" class="form-group form-row">
+            <label for="description" class="col-md-4 col-form-label">Enter More Details</label>
+            <div class="col-md-8">
+              <textarea class="form-control" id="description" placeholder="description" name="description"
+                ngModel></textarea>
+            </div>
+          </div>
+
+          <!-- Location -->
+          <div *ngIf="selectedRole === 'Job Seeker'" class="form-group form-row">
+            <label for="location" class="col-md-4 col-form-label">Work Location Preferrence</label>
+            <div class="col-md-8">
+              <input type="location" class="form-control" id="location" placeholder="location" name="location" ngModel
+                required>
+            </div>
+          </div>
+
+          <div *ngIf="selectedRole === 'Job Seeker'" class="form-group form-row">
+            <label class="col-md-4 col-form-label" for="isSubscribed">
+              Send Alerts?
+            </label>
+            <div class="col-md-8">
+              <div class="form-check">
+                <input class="form-check-input styled-checkbox" type="checkbox" id="isSubscribed" name="isSubscribed"
+                  ngModel>
+                <label class="form-check-label" for="isSubscribed"></label>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="selectedRole === 'Job Seeker' && signupForm.value.isSubscribed" class="form-group form-row">
+            <label for="SubscriptionType" class="col-md-4 col-form-label">Notification Type</label>
+            <div class="col-md-8">
+              <select class="form-control" id="subscriptionType" name="subscriptionType" ngModel
+                (change)="onNotificationTypeChange($event.target.value)">
+                <option value="">Select Notification</option>
+                <option value="whatsup">Whats up<i class="fab fa-whatsapp ms-2" style="color: #25D366;"></i></option>
+                <!-- <option value="textmessage">Text Message<i class="fas fa-comment-alt" style="color: #555;"></i>
+                  </option> -->
+                <option value="mail">Email<i class="fas fa-envelope ms-2" style="color: #333;"></i>
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer text-right">
+          <button type="submit" class="btn btn-primary" [disabled]="!signupForm.form.valid">Sign Up</button>
         </div>
       </div>
     </div>
-  </form>
+  </div>
+</form>

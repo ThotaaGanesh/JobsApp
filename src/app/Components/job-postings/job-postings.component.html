@@ -1,59 +1,124 @@
 <div class="container mt-4">
-    <!-- Action Buttons and Static Fields Row -->
-    <div class="row">
-      <div class="col-md-3 mb-3">
-        <!-- Static textbox example -->
-        <input class="form-control" type="text" placeholder="Static Text Box" aria-label="Static Text Box">
-      </div>
-      <div class="col-md-3 mb-3">
-        <!-- Another static textbox if needed -->
-        <input class="form-control" type="text" placeholder="Another Static Box" aria-label="Another Static Box">
-      </div>
-      <div class="col-md-auto mb-3">
-        <!-- Static button example -->
-        <button class="btn btn-primary" type="button">Action Button 1</button>
-      </div>
-      <div class="col-md-auto mb-3">
-        <!-- Another static button if needed -->
-        <button class="btn btn-secondary" type="button">Action Button 2</button>
-      </div>
+  <!-- Action Buttons and Static Fields Row -->
+  <div class="row">
+    <div class="col-md-3 mb-3">
+      <!-- Static textbox example -->
+      <input class="form-control" type="text" placeholder="Static Text Box" aria-label="Static Text Box">
     </div>
-  
-    <!-- Jobs Grid Row -->
-    <div class="row">
-      <div class="col-12">
-        <table class="table table-striped">
-          <thead class="thead-dark">
+    <div class="col-md-3 mb-3">
+      <!-- Another static textbox if needed -->
+      <input class="form-control" type="text" placeholder="Another Static Box" aria-label="Another Static Box">
+    </div>
+    <div class="col-md-auto mb-3">
+      <!-- Static button example -->
+      <button class="btn btn-primary" type="button">Action Button 1</button>
+    </div>
+    <div class="col-md-auto mb-3">
+      <!-- Another static button if needed -->
+      <button class="btn btn-secondary" type="button">Action Button 2</button>
+    </div>
+  </div>
+
+  <!-- Jobs Grid Row -->
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Job Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Qualification</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Location</th>
+            <th scope="col">Contact Person</th>
+            <th scope="col">Contact Number</th>
+            <th scope="col" class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let job of jobs">
+            <td>{{ job.jobName }}</td>
+            <td>{{ job.description }}</td>
+            <td>{{ job.qualification }}</td>
+            <td>{{ job.salary }}</td>
+            <td>{{ job.location }}</td>
+            <td>{{ job.contactPerson }}</td>
+            <td>{{ job.phoneNumber }}</td>
+            <td>
+              <a class="btn btn-primary btn-sm me-2" data-bs-toggle="modal"
+              data-bs-target="#matchedProfilesModal"
+                (click)="openMatchedProfiles(job)">Matched Profiles</a>
+              <button class="btn btn-info btn-sm me-2" (click)="editJob(job.id)">Edit</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteJob(job.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <pagination-controls (pageChange)="pageNumber = $event"></pagination-controls>
+    </div>
+  </div>
+</div>
+
+<!-- Matched Profiles Modal -->
+<div class="modal fade" id="matchedProfilesModal" tabindex="-1" aria-labelledby="matchedProfilesModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Matched Profiles for <strong>{{ selectedJob?.jobName }}</strong></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex mb-3">
+          <input 
+            type="text" 
+            class="form-control me-2" 
+            placeholder="Search profiles..." 
+            [(ngModel)]="searchProfile"
+            (ngModelChange)="onSearchChange()" 
+          />
+          <button type="button" class="btn btn-primary" (click)="onSearchClick()">Search</button>
+        </div>
+        <!-- Loading Spinner -->
+        <div *ngIf="loading" class="text-center">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+
+        <!-- Matched Profiles Table -->
+        <table *ngIf="!loading && matchedProfiles.length" class="table table-bordered">
+          <thead>
             <tr>
-              <th scope="col">Job Name</th>
-              <th scope="col">Description</th>
-              <th scope="col">Qualification</th>
-              <th scope="col">Salary</th>
-              <th scope="col">Location</th>
-              <th scope="col">Contact Person</th>
-              <th scope="col">Contact Number</th>
-              <th scope="col" class="text-center">Actions</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Qualification</th>
+              <th>Location</th>
+              <th>Description</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let job of jobs">
-              <td>{{ job.jobName }}</td>
-              <td>{{ job.description }}</td>
-              <td>{{ job.qualification }}</td>
-              <td>{{ job.salary }}</td>
-              <td>{{ job.location }}</td>
-              <td>{{ job.contactPerson }}</td>
-              <td>{{ job.phoneNumber }}</td>
-              <td>
-                <a class="btn btn-primary btn-sm me-2" [routerLink]="['/profiles', job.id]">Matched Profiles</a>
-                <button class="btn btn-info btn-sm me-2" (click)="editJob(job.id)">Edit</button>
-                <button class="btn btn-danger btn-sm" (click)="deleteJob(job.id)">Delete</button>
-              </td>
+            <tr *ngFor="let candidate of matchedProfiles">
+              <td>{{ candidate.name }}</td>
+              <td>{{ candidate.emailId }}</td>
+              <td>{{ candidate.phoneNumber }}</td>
+              <td>{{ candidate.qualification }}</td>
+              <td>{{ candidate.location }}</td>
+              <td>{{ candidate.description }}</td>              
             </tr>
           </tbody>
         </table>
-  
-        <pagination-controls (pageChange)="pageNumber = $event"></pagination-controls>
+
+        <!-- No profiles message -->
+        <p *ngIf="!loading && !matchedProfiles.length" class="text-center text-muted">
+          No profiles matched for the selected job.
+        </p>
+
+        <!-- Pagination Controls -->
+        <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
       </div>
     </div>
   </div>
+</div>

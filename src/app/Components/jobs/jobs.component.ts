@@ -12,24 +12,29 @@ export class JobsComponent {
   jobs: any[] = [];
   searchTerm: string = '';
   pageNumber: number = 1;
+  
+  currentuser:any;
 
   constructor(private jobService: JobService, private notificationSrevice: NotificationService) { }
 
   ngOnInit() {
-    this.loadJobs();
+    this.currentuser = sessionStorage.getItem("currentUser") ? JSON.parse(sessionStorage["currentUser"]) : null;
+    if (this.currentuser != null) {
+    this.loadJobs(this.currentuser.userId);
+    }
   }
 
-  loadJobs() {
-    this.jobService.GetAllJobs().subscribe(data => {
+  loadJobs(userid:number) {
+    this.jobService.GetAllJobs(userid).subscribe(data => {
       debugger;
       this.jobs = data.body; // Adjust based on the actual API response structure
     });
   }
 
   SendWhatsupMessage(job: any) {
-    var currentUser = sessionStorage.getItem("currentUser") ? JSON.parse(sessionStorage["currentUser"]) : null;
-    if (currentUser != null) {
-      this.notificationSrevice.SendNotification(currentUser.userId
+    
+    if (this.currentuser != null) {
+      this.notificationSrevice.SendNotification(this.currentuser.userId
         , job.id, "whatsup").subscribe({
         next: (response) => {
           alert("Notification Sent Successfully");
@@ -50,9 +55,9 @@ export class JobsComponent {
 
   SendEmail(job: any) {
     debugger;
-    var currentUser = sessionStorage.getItem("currentUser") ? JSON.parse(sessionStorage["currentUser"]) : null;
-    if (currentUser != null) {
-      this.notificationSrevice.SendNotification(currentUser.userId
+    
+    if (this.currentuser != null) {
+      this.notificationSrevice.SendNotification(this.currentuser.userId
         , job.id, "mail").subscribe({
         next: (response) => {
           alert("Notification Sent Successfully");
