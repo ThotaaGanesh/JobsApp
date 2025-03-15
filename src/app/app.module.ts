@@ -19,6 +19,8 @@ import { FormsModule } from '@angular/forms';
 import { NewPostingComponent } from './Components/new-posting/new-posting.component';
 import { DatePipe } from '@angular/common';
 import { SubscribeComponent } from './Components/subscribe/subscribe.component';
+import { AllprofilesComponent } from './Components/allprofiles/allprofiles.component';
+import { AnnouncementsComponent } from './Components/announcements/announcements.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { SubscribeComponent } from './Components/subscribe/subscribe.component';
     SignupComponent,
     AlertDirective,
     NewPostingComponent,
-    SubscribeComponent
+    SubscribeComponent,
+    AllprofilesComponent,
+    AnnouncementsComponent
   ],
   imports: [
     FormsModule,

@@ -19,6 +19,7 @@
   color: #f9f9f9 !important;
   /* a soft, complementary color of the background for links */
   transition: color 0.3s ease-in-out;
+  
   /* smooth transition for hover effects */
 }
 
@@ -43,6 +44,41 @@
   /* A darker yellow for border contrast */
   color: #005662;
   /* Text color */
+}
+
+navbar-custom {
+  padding: 0.8rem;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.nav-link {
+  transition: color 0.3s ease, background-color 0.3s ease;
+  border-radius: 5px; /* Smooth rounded corners */
+}
+
+/* Hover Effects for Menu */
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Light background while hovering */
+  color: #f8f9fa; /* Matches Bootstrap light text */
+}
+
+
+
+/* Styling Logout Button */
+.logout-btn {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #dc3545;
+  color: #fff;
 }
 
 .btn-warning:hover {

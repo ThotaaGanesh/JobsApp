@@ -17,15 +17,27 @@ export class JobService {
 
   }
 
-  public GetAllJobs(userid:number): Observable<any> {
+  public GetAllJobs(userid: number, serachtext: string): Observable<any> {
+    let params = new HttpParams()
 
-    return this.httpClient.get<any>(`https://localhost:7288/api/jobs/user/${userid}`, { responseType: "json", observe: "response" });
+
+    // Add search query if it's provided
+    if (typeof serachtext != 'undefined' && serachtext) {
+      params = params.set('search', serachtext);
+    }
+    return this.httpClient.get<any>(`https://localhost:7288/api/jobs/user/${userid}`,
+      { responseType: "json", observe: "response", params: params });
 
   }
 
-  public GetJobsByOrganisation(orgid: number): Observable<any> {
-
-    return this.httpClient.get<any>("https://localhost:7288/api/jobs/organisation/" + orgid, { responseType: "json", observe: "response" });
+  public GetJobsByOrganisation(orgid: number, search: string): Observable<any> {
+    let params = new HttpParams()
+    // Add search query if it's provided
+    if (typeof search != 'undefined' && search) {
+      params = params.set('search', search);
+    }
+    return this.httpClient.get<any>("https://localhost:7288/api/jobs/organisation/" + orgid,
+      { responseType: "json", observe: "response", params: params });
 
   }
 
@@ -50,4 +62,24 @@ export class JobService {
     });
 
   }
+
+  public getAllProfiles(orgId: number, search: string): Observable<any> {
+
+    let params = new HttpParams()
+    // Add search query if it's provided
+    if (typeof search != 'undefined' && search) {
+      params = params.set('search', search);
+    }
+
+    const url = `https://localhost:7288/api/jobs/organisation/${orgId}/allprofiles`;
+
+    // Pass the params object to the HttpClient
+    return this.httpClient.get<any>(url, {
+      responseType: 'json',
+      observe: 'response',
+      params: params // Attach the query parameters
+    });
+  }
 }
+
+

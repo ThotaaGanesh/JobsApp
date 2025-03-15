@@ -9,6 +9,8 @@ import { JobPostingsComponent } from './Components/job-postings/job-postings.com
 import { JobsComponent } from './Components/jobs/jobs.component';
 import { NewPostingComponent } from './Components/new-posting/new-posting.component';
 import { SubscribeComponent } from './Components/subscribe/subscribe.component';
+import { AllprofilesComponent } from './Components/allprofiles/allprofiles.component';
+import { AnnouncementsComponent } from './Components/announcements/announcements.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "about", pathMatch: "full" },
@@ -19,6 +21,8 @@ const routes: Routes = [
   { path: "newposting", component: NewPostingComponent, canActivate: [CanActivateGuardService] },
   { path: "job", component: JobsComponent, canActivate: [CanActivateGuardService] },
   { path: "subscribe", component: SubscribeComponent, canActivate: [CanActivateGuardService] },
+  { path: "allprofiles", component: AllprofilesComponent, canActivate: [CanActivateGuardService] },
+  { path: "announcements", component: AnnouncementsComponent, canActivate: [] }
 ];
 
 @NgModule({

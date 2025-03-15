@@ -17,15 +17,16 @@ export class JobPostingsComponent {
   selectedJob: any = null; // The current selected job
   loading: boolean = false; // Controls the loading spinner
   pageCount: number = 5;
+  searchtext: string;
 
   constructor(private jobService: JobService) { }
 
   ngOnInit() {
-    this.loadJobs();
+    this.loadJobs('');
   }
 
-  loadJobs() {
-    this.jobService.GetJobsByOrganisation(this.GetOrgnaisationId()).subscribe(data => {
+  loadJobs(searchtext: string) {
+    this.jobService.GetJobsByOrganisation(this.GetOrgnaisationId(), searchtext).subscribe(data => {
       debugger;
       this.jobs = data.body; // Adjust based on the actual API response structure
     });
@@ -95,5 +96,19 @@ export class JobPostingsComponent {
   onSearchClick(): void {
     this.pageNumber = 1; // Reset to first page
     this.fetchMatchedProfiles(); // Fetch updated profiles
+  }
+
+  // Triggered when the search input is updated live (optional)
+  onJobSearchChange(): void {
+    debugger;
+    if (this.searchtext.length == 3 || this.searchtext.length == 0) {
+      this.loadJobs(this.searchtext); // Fetch updated profiles
+    }
+  }
+
+  // Triggered when clicking the search button (explicit search action)
+  onJobSearchClick(): void {
+    debugger;
+    this.loadJobs(this.searchtext); // Fetch updated profiles
   }
 }

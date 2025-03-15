@@ -12,6 +12,7 @@ export class JobsComponent {
   jobs: any[] = [];
   searchTerm: string = '';
   pageNumber: number = 1;
+  searchtext: string;
   
   currentuser:any;
 
@@ -20,12 +21,12 @@ export class JobsComponent {
   ngOnInit() {
     this.currentuser = sessionStorage.getItem("currentUser") ? JSON.parse(sessionStorage["currentUser"]) : null;
     if (this.currentuser != null) {
-    this.loadJobs(this.currentuser.userId);
+    this.loadJobs(this.currentuser.userId,'');
     }
   }
 
-  loadJobs(userid:number) {
-    this.jobService.GetAllJobs(userid).subscribe(data => {
+  loadJobs(userid:number,searchtext:string) {
+    this.jobService.GetAllJobs(userid,searchtext).subscribe(data => {
       debugger;
       this.jobs = data.body; // Adjust based on the actual API response structure
     });
@@ -89,5 +90,19 @@ export class JobsComponent {
     // this.jobService.deleteJob(id).subscribe(() => {
     //   this.loadJobs(); // Refresh the list after deleting a job
     // });
+  }
+
+  // Triggered when the search input is updated live (optional)
+  onSearchChange(): void {
+    debugger;
+    if (this.searchtext.length == 3 || this.searchtext.length == 0) {
+      this.loadJobs(this.currentuser.userId,this.searchtext); // Fetch updated profiles
+    }
+  }
+
+  // Triggered when clicking the search button (explicit search action)
+  onSearchClick(): void {
+    debugger;
+    this.loadJobs(this.currentuser.userId,this.searchtext); // Fetch updated profiles
   }
 }

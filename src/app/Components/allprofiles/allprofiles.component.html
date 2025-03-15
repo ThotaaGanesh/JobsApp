@@ -1,0 +1,49 @@
+<div class="container mt-4">
+    <!-- Action Buttons and Static Fields Row -->
+    <div class="row">
+        <div class="col-md-3 mb-3">
+          
+            <input class="form-control" type="text" placeholder="Static Text Box" aria-label="Static Text Box"
+            [(ngModel)]="searchtext"
+            (ngModelChange)="onSearchChange1()" >
+        </div>
+        <div class="col-md-auto mb-3">
+           
+            <button class="btn btn-primary" type="button" (click)="onSearchClick1()">search</button>
+        </div>
+    </div>
+
+    <!-- Jobs Grid Row -->
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Qualification</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let profile of allProfiles">
+                        <td>{{ profile.name }}</td>
+                        <td>{{ profile.qualification }}</td>
+                        <td>{{ profile.description }}</td>
+                        <td>{{ profile.location }}</td>
+                        <td>{{ profile.phoneNumber }}</td>
+                        <td>{{ profile.emailId }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p *ngIf="!allProfiles.length" class="text-center text-muted">
+                No matched profiles found for your preffered Location - {{currentuser.location}}.
+                <br />
+                Configure for all locations to see multiple profiles.
+            </p>           
+        </div>
+    </div>
+          
+</div>

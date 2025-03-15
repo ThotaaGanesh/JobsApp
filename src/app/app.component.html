@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-custom">
+<nav class="navbar navbar-custom navbar-expand-sm navbar-custom">
   <a class="navbar-brand ms-3" href="#">
     Job Portal
   </a>
@@ -10,6 +10,10 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" [routerLink]=" [ '/about' ] " routerLinkActive="active">Dashboard</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]=" [ '/announcements' ] " routerLinkActive="active">Announcements</a>
       </li>
       <!--Organisation specific  jobs -->
       <ng-container *ngIf="loginService.currentUserName != null && (loginService.currentUserRole == 'Employer')">
@@ -32,22 +36,28 @@
         </li>
       </ng-container>
 
+      <ng-container
+        *ngIf="loginService.currentUserName != null && (loginService.currentUserRole == 'Employer' || loginService.currentUserRole == 'Admin')">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]=" [ '/allprofiles' ] " routerLinkActive="active">All Profiles</a>
+        </li>
+      </ng-container>
 
       <ng-container *ngIf="loginService.currentUserName != null && (loginService.currentUserRole == 'Admin' )">
         <li class="nav-item">
           <a class="nav-link" [routerLink]=" [ '/subscribe' ] " routerLinkActive="active">Add Alerts To Jobs</a>
         </li>
       </ng-container>
-      
-        <ng-container *ngIf="loginService.currentUserName == null">
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]=" [ '/login' ] " routerLinkActive="active">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]=" [ '/signup' ] " routerLinkActive="active">Sign Up</a>
-          </li>
-        </ng-container>
-      
+
+      <ng-container *ngIf="loginService.currentUserName == null">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]=" [ '/login' ] " routerLinkActive="active">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]=" [ '/signup' ] " routerLinkActive="active">Sign Up</a>
+        </li>
+      </ng-container>
+
 
     </ul>
 

@@ -1,23 +1,17 @@
 <div class="container mt-4">
-  <!-- Action Buttons and Static Fields Row -->
-  <div class="row">
-    <div class="col-md-3 mb-3">
-      <!-- Static textbox example -->
-      <input class="form-control" type="text" placeholder="Static Text Box" aria-label="Static Text Box">
-    </div>
-    <div class="col-md-3 mb-3">
-      <!-- Another static textbox if needed -->
-      <input class="form-control" type="text" placeholder="Another Static Box" aria-label="Another Static Box">
-    </div>
-    <div class="col-md-auto mb-3">
-      <!-- Static button example -->
-      <button class="btn btn-primary" type="button">Action Button 1</button>
-    </div>
-    <div class="col-md-auto mb-3">
-      <!-- Another static button if needed -->
-      <button class="btn btn-secondary" type="button">Action Button 2</button>
-    </div>
+<!-- Action Buttons and Static Fields Row -->
+<div class="row">
+  <div class="col-md-3 mb-3">
+    
+      <input class="form-control" type="text" placeholder="Static Text Box" aria-label="Static Text Box"
+      [(ngModel)]="searchtext"
+      (ngModelChange)="onJobSearchChange()" >
   </div>
+  <div class="col-md-auto mb-3">
+     
+      <button class="btn btn-primary" type="button" (click)="onJobSearchClick()">search</button>
+  </div>
+</div>
 
   <!-- Jobs Grid Row -->
   <div class="row">

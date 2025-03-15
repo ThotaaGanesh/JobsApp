@@ -2,20 +2,14 @@
     <!-- Action Buttons and Static Fields Row -->
     <div class="row">
         <div class="col-md-3 mb-3">
-            <!-- Static textbox example -->
-            <input class="form-control" type="text" placeholder="Static Text Box" aria-label="Static Text Box">
-        </div>
-        <div class="col-md-3 mb-3">
-            <!-- Another static textbox if needed -->
-            <input class="form-control" type="text" placeholder="Another Static Box" aria-label="Another Static Box">
+          
+            <input class="form-control" type="text" placeholder="Static Text Box" aria-label="Static Text Box"
+            [(ngModel)]="searchtext"
+            (ngModelChange)="onSearchChange()" >
         </div>
         <div class="col-md-auto mb-3">
-            <!-- Static button example -->
-            <button class="btn btn-primary" type="button">Action Button 1</button>
-        </div>
-        <div class="col-md-auto mb-3">
-            <!-- Another static button if needed -->
-            <button class="btn btn-secondary" type="button">Action Button 2</button>
+           
+            <button class="btn btn-primary" type="button" (click)="onSearchClick()">search</button>
         </div>
     </div>
 
@@ -47,21 +41,22 @@
                         <td>{{ job.contactPerson }}</td>
                         <td>{{ job.phoneNumber }}</td>
                         <td>
+                            <div class="d-flex align-items-center">
                             <!-- WhatsApp Icon -->
                             <button (click)="SendWhatsupMessage(job)" style="background: none; border: none;">
                                 <i class="fab fa-whatsapp me-2 fa-2x" style="color: #25D366; font-size: 20px;"></i>
                             </button>
 
                             <!-- Message to Phone Icon -->
-                            <button (click)="SendSms(job)" style="background: none; border: none;">
+                            <!-- <button (click)="SendSms(job)" style="background: none; border: none;">
                                 <i class="fas fa-comment-alt me-2 fa-2x" style="color: #555; font-size: 20px;"></i>
-                            </button>
+                            </button> -->
 
                             <!-- Mail Icon -->
                             <button (click)="SendEmail(job)" style="background: none; border: none;">
                                 <i class="fas fa-envelope fa-2x" style="color: #333; font-size: 20px;"></i>
                             </button>
-
+                        </div>
                         </td>
                     </tr>
                 </tbody>
