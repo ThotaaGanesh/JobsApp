@@ -70,7 +70,7 @@
       <ng-container *ngIf="loginService.organisationName == null && loginService.currentUserName!=null">
         <div class="nav-item mr-2 " style="flex-direction: column;">
           <span class="nav-link" style="margin-bottom: 5;"><strong>Welcome to {{ loginService.currentUserName }}</strong></span>
-          <span class="nav-link" *ngIf="(loginService.currentUserRole != 'Employer' && loginService.currentUserRole != 'Admin')"><strong>Prefferd Location: {{ loginService.location }}</strong></span>
+          <span class="nav-link" *ngIf="(loginService.currentUserRole != 'Employer' && loginService.currentUserRole != 'Admin')"><strong>Preferred Location: {{ loginService.location }}</strong></span>
         </div>
       </ng-container>
       <ng-container *ngIf="loginService.currentUserName != null">
