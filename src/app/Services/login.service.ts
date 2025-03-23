@@ -18,6 +18,7 @@ export class LoginService {
   currentUserName: any = null;
   currentUserRole: any = null;
   organisationName: any = null;
+  location: any = null;
 
   public Login(loginViewModel: LoginViewModel): Observable<any> {
     debugger;
@@ -29,6 +30,7 @@ export class LoginService {
           this.currentUserName = response.body.data.username;
           this.currentUserRole = response.body.data.role;
           this.organisationName = this.currentUserRole == "Employer" ? response.body.data.organisationName : null;
+          this.location = response.body.data.location;
           sessionStorage['currentUser'] = JSON.stringify(response.body.data);
         }
         return response.body.data;

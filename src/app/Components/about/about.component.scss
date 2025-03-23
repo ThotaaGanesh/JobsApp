@@ -117,3 +117,21 @@
 .col-md-6 {
   padding: 10px;
 }
+strong{
+  color: #344cd6;
+  font-size: large;
+}
+
+img.fit {
+  width: 350px; /* Forces the width to 350px */
+  height: 350px; /* Forces the height to 250px */
+  object-fit: fill; /* Ensures the image covers the container while maintaining aspect ratio */
+  border-radius: 10px; /* Optional: Gives rounded corners to make it look elegant */
+}
+
+img.fit1 {
+  width: 600px; /* Forces the width to 350px */
+  height: 500px; /* Forces the height to 250px */
+  object-fit: fill; /* Ensures the image covers the container while maintaining aspect ratio */
+  border-radius: 10px; /* Optional: Gives rounded corners to make it look elegant */
+}

@@ -13,9 +13,9 @@ import { AllprofilesComponent } from './Components/allprofiles/allprofiles.compo
 import { AnnouncementsComponent } from './Components/announcements/announcements.component';
 
 const routes: Routes = [
-  { path: "", redirectTo: "about", pathMatch: "full" },
+  { path: "", redirectTo: "dashboard", pathMatch: "full" },
   { path: "login", component: LoginComponent, pathMatch: "full" },
-  { path: "about", component: AboutComponent },
+  { path: "dashboard", component: AboutComponent },
   { path: "signup", component: SignupComponent },
   { path: "posting", component: JobPostingsComponent, canActivate: [CanActivateGuardService] },
   { path: "newposting", component: NewPostingComponent, canActivate: [CanActivateGuardService] },
